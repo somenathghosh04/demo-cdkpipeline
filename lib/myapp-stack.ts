@@ -4,7 +4,7 @@ import { Function, Code, Runtime, FunctionUrl, FunctionUrlAuthType } from 'aws-c
 
 export class myappstack extends Stack {
   
-    // public readonly functionurl: CfnOutput;
+    public readonly functionurl: CfnOutput;
 
     constructor(scope: Construct, id: string, props?: StackProps) {
       super(scope, id, props);
@@ -16,15 +16,15 @@ export class myappstack extends Stack {
            runtime: Runtime.NODEJS_22_X
         });
 
-        // const fnurl = new FunctionUrl(this, 'myappurl', {
-        //     function: myapp,
-        //     authType: FunctionUrlAuthType.NONE  // This makes the function publicly accessible
-        // });
+        const fnurl = new FunctionUrl(this, 'myappurl', {
+            function: myapp,
+            authType: FunctionUrlAuthType.NONE  // This makes the function publicly accessible
+        });
 
-        // // Output the function URL
-        // this.functionurl = new CfnOutput(this, 'FunctionUrl', {
-        //     value: fnurl.url
-        // });
+        // Output the function URL
+        this.functionurl = new CfnOutput(this, 'FunctionUrl', {
+            value: fnurl.url
+        });
 
     }
 
