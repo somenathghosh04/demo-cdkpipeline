@@ -3,6 +3,6 @@ exports.handler = async function (event) {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'text/plain' },
-      body: `This is a DUMMY Application\n`,
+      body: `Welcome !! To This DUMMY Application\n`,
     }
   }

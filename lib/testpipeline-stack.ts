@@ -42,9 +42,9 @@ export class TestpipelineStack extends Stack {
     // devStage.addPre(new ManualApprovalStep('ManualApprovalStep'));
 
 
-    cdkpipeline.addStage(new testpipelinestage(this, 'In-Pipeline-Ac'));
+    cdkpipeline.addStage(new testpipelinestage(this, 'In-Pipeline'));
 
-    cdkpipeline.addStage(new testpipelinestage(this, 'DEV', {
+    cdkpipeline.addStage(new testpipelinestage(this, 'In-Dev', {
       env: { account: '345990532018', region: 'us-east-1' }
     }),
       {
