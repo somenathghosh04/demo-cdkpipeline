@@ -25,8 +25,16 @@ export class TestpipelineStack extends Stack {
     // deployes to pipeline account
 
     const app = new testpipelinestage(this,"appdeploy");
-    const pipelinedeploystage = cdkpipeline.addStage(app);
+    const pipelinestage = cdkpipeline.addStage(app);
 
+    const devStage = new testpipelinestage(this, 'Dev', {
+      env: { 
+        account: '345990532018',  
+        region: 'us-east-1'
+      }
+    });
+    const adddevstage = cdkpipeline.addStage(devStage);
+    adddevstage.addPre(new ManualApprovalStep('ManualApprovalStep'));    
 
 }
 }
