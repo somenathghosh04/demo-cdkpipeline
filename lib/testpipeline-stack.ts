@@ -15,8 +15,11 @@ export class TestpipelineStack extends Stack {
         input: CodePipelineSource.connection('somenathghosh04/demo-cdkpipeline', 'main', {
           connectionArn: "arn:aws:codeconnections:us-east-1:471303021863:connection/30510401-5307-466f-869f-5162f1dbe115" 
         }),
+        
 
       }),
+      crossAccountKeys: true,
+      
 
     }
 
@@ -24,17 +27,27 @@ export class TestpipelineStack extends Stack {
 
     // deployes to pipeline account
 
-    const app = new testpipelinestage(this,"appdeploy");
-    const pipelinestage = cdkpipeline.addStage(app);
+    // const pipelineapp = new testpipelinestage(this,"pipelineapp");
+    // const pipelinestage = cdkpipeline.addStage(pipelineapp);
 
-    // const devStage = new testpipelinestage(this, 'Dev', {
-    //   env: { 
+    // //  dev account
+
+    // const devapp = new testpipelinestage(this,"devapp",{
+    //   env: {
     //     account: '345990532018',  
     //     region: 'us-east-1'
     //   }
     // });
-    // const adddevstage = cdkpipeline.addStage(devStage);
-    // adddevstage.addPre(new ManualApprovalStep('ManualApprovalStep'));    
+    // const devStage = cdkpipeline.addStage(devapp);
+    // devStage.addPre(new ManualApprovalStep('ManualApprovalStep'));
+
+
+    cdkpipeline.addStage(new testpipelinestage(this, 'PPL'));
+
+    cdkpipeline.addStage(new testpipelinestage(this, 'DEV', {
+      env: { account: '345990532018', region: 'us-east-1' }
+    }));
+   
 
 }
 }
