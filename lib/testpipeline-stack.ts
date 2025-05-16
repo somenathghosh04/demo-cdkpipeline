@@ -29,12 +29,13 @@ export class TestpipelineStack extends Stack {
     cdkpipeline.addStage(new testpipelinestage(this, 'In-Pipeline'));
 
     // deploys to dev account
-    cdkpipeline.addStage(new testpipelinestage(this, 'In-Dev', {
-      env: { account: '345990532018', region: 'us-east-1' }
-    }),
-      {
-        pre: [new ManualApprovalStep('PromoteToDev')]
-      });
+
+    // cdkpipeline.addStage(new testpipelinestage(this, 'In-Dev', {
+    //   env: { account: '345990532018', region: 'us-east-1' }
+    // }),
+    //   {
+    //     pre: [new ManualApprovalStep('PromoteToDev')]
+    //   });
    
 
 }
