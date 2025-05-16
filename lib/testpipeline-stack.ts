@@ -25,25 +25,10 @@ export class TestpipelineStack extends Stack {
 
     );
 
-    // deployes to pipeline account
-
-    // const pipelineapp = new testpipelinestage(this,"pipelineapp");
-    // const pipelinestage = cdkpipeline.addStage(pipelineapp);
-
-    // //  dev account
-
-    // const devapp = new testpipelinestage(this,"devapp",{
-    //   env: {
-    //     account: '345990532018',  
-    //     region: 'us-east-1'
-    //   }
-    // });
-    // const devStage = cdkpipeline.addStage(devapp);
-    // devStage.addPre(new ManualApprovalStep('ManualApprovalStep'));
-
-
+    // deploys to pipeline account
     cdkpipeline.addStage(new testpipelinestage(this, 'In-Pipeline'));
 
+    // deploys to dev account
     cdkpipeline.addStage(new testpipelinestage(this, 'In-Dev', {
       env: { account: '345990532018', region: 'us-east-1' }
     }),

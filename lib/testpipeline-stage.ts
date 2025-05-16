@@ -7,7 +7,6 @@ export class testpipelinestage extends Stage {
     super(scope, id, props);
 
     const service = new myappstack(this, "WebService");
-    // const service = new myappstack(this, "WebService", {env: {region:'us-east-1'}});
   }
 
 }
